@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 /**
@@ -89,6 +91,54 @@ public class Tree {
         preorder(node.left);
         preorder(node.right);
 
+    }
+    public void postorder(){
+        postorder(root);
+    }
+    private void postorder(Node node){
+        if(node==null){
+            return;
+        }
+
+        postorder(node.left);
+        postorder(node.right);
+        System.out.print(node.val+" ");
+
+    }
+    public void Inorder(){
+        Inorder(root);
+    }
+    private void Inorder(Node node){
+        if(node==null){
+            return;
+        }
+        Inorder(node.left);
+        System.out.print(node.val+" ");
+        Inorder(node.right);
+
+    }
+    public void levelOrder(){
+        levelOrder(root);
+    }
+    private void levelOrder(Node node){
+
+        Queue<Node> q=new LinkedList<>();
+
+        q.add(node);
+        while (!q.isEmpty()) {
+
+            Node rv=q.poll();
+            System.out.print(rv.val+" ");
+            if(rv.left!=null){
+                q.add(rv.left);
+            }
+            if(rv.right!=null){
+                q.add(rv.right);
+            }
+            
+        }
+        System.out.println();
+        
     }
     
 }

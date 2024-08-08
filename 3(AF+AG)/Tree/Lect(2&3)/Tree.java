@@ -5,19 +5,19 @@ import java.util.Scanner;
  */
 public class Tree {
 
-    class Node{
+    class Node {
         int val;
         Node left;
         Node right;
     };
     private Node root;
 
-    public void BinaryTree(){
 
-        root=CreateTree();
+    public void BinaryTree(){
+        root=CreaṭeTree();
     }
     Scanner sc=new Scanner(System.in);
-    public Node CreateTree(){
+    public Node CreaṭeTree(){
 
         int item=sc.nextInt();
         Node nn=new Node();
@@ -25,11 +25,11 @@ public class Tree {
 
         Boolean hlc=sc.nextBoolean();
         if(hlc){
-            nn.left=CreateTree();
+            nn.left=CreaṭeTree();
         }
         Boolean hrc=sc.nextBoolean();
         if(hrc){
-            nn.right=CreateTree();
+            nn.right=CreaṭeTree();
         }
 
         return nn;
@@ -37,16 +37,13 @@ public class Tree {
     public void Display(){
         Display(root);
     }
-    
     private void Display(Node node){
         if(node==null){
             return;
         }
-
         String s="";
         s=s+node.val;
         s="<-"+s+"->";
-
         if(node.left!=null){
             s=node.left.val+s;
         }else{
@@ -63,9 +60,10 @@ public class Tree {
 
     }
     public boolean find(int item){
-        return find(this.root,item);
+        return find(root,item);
     }
-    private boolean find(Node node, int item){
+
+    private Boolean find(Node node,int item){
 
         if(node==null){
             return false;
@@ -73,38 +71,24 @@ public class Tree {
         if(node.val==item){
             return true;
         }
+        Boolean Leftans=find(node.left, item);
+        Boolean Rightans=find(node.right, item);
 
-        boolean lf=find(node.left, item);
-        boolean rf=find(node.right, item);
+        return Leftans||Rightans;
 
-        return lf||rf;
     }
-    public int max(){
-        return max(root);
+    public void preorder(){
+        preorder(root);
     }
-    private int max(Node node){
+    private void preorder(Node node){
         if(node==null){
-       return Integer.MIN_VALUE;
+            return;
         }
 
-        int Left=max(node.left);
-        int Right=max(node.right);
-
-        return Math.max(node.val,Math.max(Left,Right));
-    }
-    public int height(){
-       return height(this.root);
-    }
-    private int height(Node node){
-      if(node==null){
-        return 0;
-      }
-
-        int lh=height(node.left);
-        int rh=height(node.right);
-
-        return Math.max(lh,rh)+1;
-
+        System.out.print(node.val+" ");
+        preorder(node.left);
+        preorder(node.right);
 
     }
+    
 }

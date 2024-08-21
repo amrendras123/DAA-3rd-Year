@@ -1,6 +1,10 @@
-public class Symmetric {
+/**
+ * Flipequivalent
+ */
+public class Flipequivalent {
+
     public class TreeNode {
-            int val;
+             int val;
              TreeNode left;
              TreeNode right;
              TreeNode() {}
@@ -8,14 +12,15 @@ public class Symmetric {
              TreeNode(int val, TreeNode left, TreeNode right) {
                  this.val = val;
                  this.left = left;
-                 this.right = right;
-             }
+              this.right = right;
+            }
+         }
         
        class Solution {
-           public boolean isSymmetric(TreeNode root) {
-               return symmetric(root.left,root.right);
+           public boolean flipEquiv(TreeNode root1, TreeNode root2) {
+                return equi(root1,root2);
            }
-           public boolean symmetric(TreeNode root1,TreeNode root2){
+           public boolean equi(TreeNode root1,TreeNode root2){
        
                if(root1==null&&root2==null){
                    return true;
@@ -26,12 +31,14 @@ public class Symmetric {
                if(root1.val!=root2.val){
                    return false;
                }
-               boolean left=symmetric(root1.left,root2.right);
-               boolean right=symmetric(root1.right,root2.left);
        
-               return left&&right;
+               boolean noflip=equi(root1.left,root2.left)&&equi(root1.right,root2.right);
+               boolean flip=equi(root1.left,root2.right)&&equi(root1.right,root2.left);
+               
+       
+               return noflip||flip;
        
            }
-       }
-}
+           }
+       
 }

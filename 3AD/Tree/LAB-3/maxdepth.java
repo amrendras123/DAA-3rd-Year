@@ -1,9 +1,4 @@
-/**
- * height
- */
-public class height {
-
-    
+public class maxdepth {
     public class TreeNode {
         int val;
          TreeNode left;
@@ -27,6 +22,6 @@ public class height {
                 int ans=Math.max(lh,rh)+1;
                 return ans;
             }
-        }}
-    
+        }
+    }
 }

@@ -1,9 +1,4 @@
-/**
- * height
- */
-public class height {
-
-    
+public class mindepth {
     public class TreeNode {
         int val;
          TreeNode left;
@@ -16,17 +11,23 @@ public class height {
              this.right = right;
          }
          class Solution {
-            public int maxDepth(TreeNode root) {
+            public int minDepth(TreeNode root) {
                 
                 if(root==null){
                     return 0;
                 }
-                int lh=maxDepth(root.left);
-                int rh=maxDepth(root.right);
-                
-                int ans=Math.max(lh,rh)+1;
+                if(root.left==null&&root.right==null){
+                    return 1;
+                }
+                if(root.left==null){
+                 return minDepth(root.right)+1;
+                }
+                if(root.right==null){
+                return minDepth(root.left)+1;
+                }
+                int ans=Math.min(minDepth(root.left),minDepth(root.right))+1;
                 return ans;
             }
-        }}
-    
+        }
+    }
 }

@@ -1,5 +1,8 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Graph
@@ -84,5 +87,56 @@ public class Graph {
     visited.remove(src);
     }
 
+    public boolean BFS(int src,int dest){
 
+        Queue<Integer> q=new LinkedList<>();
+        HashSet<Integer> visited=new HashSet<>();
+        q.add(src);
+        while(!q.isEmpty()){
+            //remove
+            int rv=q.poll();
+            //ignore
+            if(visited.contains(rv)){
+                continue;
+            }
+            //visited
+            visited.add(rv);
+            //self work
+            if(rv==dest){
+                return true;
+            }
+            for(int nbrs:map.get(rv).keySet()){
+                if(!visited.contains(nbrs)){
+                    q.add(nbrs);
+                }
+            }
+        }
+        return false;
+    }
+    public boolean DFS(int src,int dest){
+        HashSet<Integer> visited=new HashSet<>();
+        Stack<Integer> st=new Stack<>();
+
+        st.add(src);
+        while(!st.isEmpty()){
+
+            int rv=st.pop();
+            if(visited.contains(rv))
+            continue;
+
+            visited.add(rv);
+            if(rv==dest){
+                return true;
+            }
+            for(int nbrs:map.get(rv).keySet()){
+                if(!visited.contains(nbrs)){
+                    st.push(nbrs);
+                }
+
+        }
+       
+    }
+    return false;
+
+    }
 }

@@ -230,12 +230,35 @@ public class Graph {
     return cnt==1;   
     }
     public boolean isbipartite(){
-
+      //DYS
     }
     public boolean isCycle(){
+        // Done
+        Queue<Integer> q=new LinkedList<>();
+        HashSet<Integer> visited=new HashSet<>();
+        q.add(src);
+        while(!q.isEmpty()){
+            //remove
+            int rv=q.poll();
+            //ignore
+            if(visited.contains(rv)){
+                return true;
+            }
+            //visited
+            visited.add(rv);
+         
+            for(int nbrs:map.get(rv).keySet()){
+                if(!visited.contains(nbrs)){
+                    q.add(nbrs);
+                }
+            }
+        }
+        return false;
 
     }
     public int conn_component(){
+        // Done
+        
         
     }
 }

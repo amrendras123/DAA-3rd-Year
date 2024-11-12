@@ -25,20 +25,16 @@ public class Dijkstra {
             //remove
             DijPair rp=pq.poll();
             //ignore
-
             //visited
             visisted.add(rp.vtx);
             //self work
             System.out.println();
-
             //nbrs
             for(int nbrs:map.get(rp.vtx).keySet()){
                 if(!visisted.contains(nbrs)){
                     pq.add(new DijPair(nbrs, rp.path+nbrs, rp.cost+map.get(rp.vtx).get(nbrs)));
                 }
             }
-
-
         }
         
     }

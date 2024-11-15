@@ -29,17 +29,6 @@ public class Bellmanford {
             return this.e1+"-"+this.e2+"->"+this.cost;
         }
     }
-    public List<Pair> getAllEdge(){
-
-        List<Pair> ll=new ArrayList<>();
-        for(int e1:map.keySet()){
-            for(int e2:map.get(e1).keySet()){
-                int cost=map.get(e1).get(e2);
-                ll.add(new Pair(e1, e2, cost));
-            }
-        }
-        return ll;
-    }
     public void BellmanfordAlgo(int src){
         int v=map.size();
         int[] dist=new int[v+1];
@@ -63,7 +52,17 @@ public class Bellmanford {
             System.out.print(dist[i]+" ");
         }
     }
-   
+    public List<Pair> getAllEdge(){
+
+        List<Pair> ll=new ArrayList<>();
+        for(int e1:map.keySet()){
+            for(int e2:map.get(e1).keySet()){
+                int cost=map.get(e1).get(e2);
+                ll.add(new Pair(e1, e2, cost));
+            }
+        }
+        return ll;
+    }
     public static void main(String[] args) {
         Bellmanford bf=new Bellmanford(5);
         bf.addEdge(1, 2, 8);

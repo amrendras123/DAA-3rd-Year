@@ -24,11 +24,22 @@ public class BellmanFord {
         }
         arr[src]=0;
         //realx
-        for(int i=1;i<=v-1;i++){
-          List<EdgePair> ll=getAllEdgePair();
-          
-
-          
+        for(int i=1;i<=v;i++){
+        List<EdgePair> ll=getAllEdgePair();
+        for(EdgePair e:ll){ 
+            int oldcost=arr[e.e2];
+            int newcost=arr[e.e1]+e.cost;
+            if(i==v&&oldcost>newcost){
+                System.out.println("-ve edge ka cycle hai");
+                return;
+            }
+            if(newcost<oldcost){
+                arr[e.e2]=arr[e.e1]+e.cost;
+            }
+        }  
+        }
+        for(int i=1;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
         }
      }
     class EdgePair{
@@ -49,5 +60,19 @@ public class BellmanFord {
             }
           }
           return ll;
+    }
+    public static void main(String[] args) {
+        BellmanFord bf=new BellmanFord(5);
+        bf.addEdge(1, 2, 8);
+        bf.addEdge(1, 3, 4);
+        bf.addEdge(1, 4, 5);
+        bf.addEdge(2, 5, 2);
+        bf.addEdge(5, 2, 1);
+        bf.addEdge(3, 4, -3);
+        bf.addEdge(4, 5, 4);
+
+        bf.BellmanFordAlgo(3);
+        
+
     }
 }
